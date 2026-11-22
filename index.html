@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ai Là Triệu Phú - Phiên Bản Tư Tưởng Hồ Chí Minh</title>
+
+  <!-- Google Fonts: Be Vietnam Pro & Montserrat & Orbitron for high-end TV Gameshow feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Montserrat:wght@400;600;700;800;900&family=Orbitron:wght@600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- ========================================================================= -->
+  <!-- BACKGROUND AMBIENCE: Spotlight, Studio Rings, Floating Light Particles -->
+  <!-- ========================================================================= -->
+  <div class="studio-background" aria-hidden="true">
+    <div class="spotlight spotlight-left"></div>
+    <div class="spotlight spotlight-right"></div>
+    <div class="spotlight spotlight-center"></div>
+    <div class="studio-grid-floor"></div>
+    <div class="vignette-overlay"></div>
+    <canvas id="ambientCanvas" class="ambient-canvas"></canvas>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- TOP UTILITY BAR (Âm thanh, Toàn màn hình, Giới thiệu) -->
+  <!-- ========================================================================= -->
+  <header class="top-nav-bar">
+    <div class="brand-mini">
+      <span class="brand-star">★</span>
+      <span class="brand-text">• MÔN TƯ TƯỞNG HỒ CHÍ MINH</span>
+    </div>
+
+    <div class="utility-controls">
+      <button id="soundToggleBtn" class="utility-btn" title="Bật/Tắt âm thanh" aria-label="Bật/Tắt âm thanh">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M11 5L6 9H2v6h4l5 4V5z" />
+          <path class="sound-wave" d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+        </svg>
+        <span class="btn-label">Âm thanh</span>
+      </button>
+
+      <button id="fullscreenToggleBtn" class="utility-btn" title="Chế độ Trình chiếu Toàn màn hình (F11)"
+        aria-label="Toàn màn hình">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+        </svg>
+        <span class="btn-label">Trình chiếu</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 1. MÀN HÌNH BẮT ĐẦU (#startScreen) -->
+  <!-- ========================================================================= -->
+  <main id="startScreen" class="screen screen-start active">
+    <div class="start-content-container">
+      <!-- Gameshow Studio Emblem & Badge -->
+      <div class="show-logo-wrapper">
+        <div class="emblem-outer-glow"></div>
+        <div class="emblem-disk">
+          <div class="disk-ring ring-outer"></div>
+          <div class="disk-ring ring-middle"></div>
+          <div class="disk-ring ring-inner"></div>
+          <div class="disk-core">
+            <div class="golden-star-crest">★</div>
+          </div>
+        </div>
+
+        <div class="logo-title-group">
+          <span class="sub-badge">GAMESHOW HỌC THUẬT</span>
+          <h1 class="main-title">
+            <span class="title-top">AI LÀ</span>
+            <span class="title-bottom">TRIỆU PHÚ</span>
+          </h1>
+          <div class="title-edition">
+            <span class="edition-line"></span>
+            <span class="edition-text">PHIÊN BẢN TƯ TƯỞNG HỒ CHÍ MINH</span>
+            <span class="edition-line"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tagline & Description -->
+      <div class="start-tagline">
+        <p class="tagline-text">
+          Chinh phục <strong>10 câu hỏi lịch sử & lý luận</strong> đỉnh cao.<br>
+          Khẳng định bản lĩnh và tri thức thế hệ trẻ Việt Nam!
+        </p>
+      </div>
+
+      <!-- Action Button -->
+      <div class="start-action-group">
+        <button id="startButton" class="btn-gameshow-cta">
+          <span class="cta-shine"></span>
+          <span class="cta-icon">▶</span>
+          <span class="cta-text">BẮT ĐẦU CHƠI</span>
+        </button>
+      </div>
+
+      <!-- Presentation Info Badge -->
+      <footer class="start-footer-info">
+        <div class="info-pill">
+          <span>🎯 10 Mốc Thử Thách</span>
+          <span class="separator">•</span>
+          <span>💡 3 Quyền Trợ Giúp</span>
+          <span class="separator">•</span>
+          <span>👥 Tối Đa 2 Người / Câu</span>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- 2. MÀN HÌNH CHƠI GAME CHÍNH (#gameScreen) -->
+  <!-- ========================================================================= -->
+  <main id="gameScreen" class="screen screen-game">
+    <div class="game-layout-container">
+
+      <!-- CỘT TRÁI & TRUNG TÂM: Khu vực sân khấu, Quyền trợ giúp, Câu hỏi & 4 Đáp án -->
+      <section class="stage-arena" aria-label="Sân khấu thi đấu chính">
+
+        <!-- Hàng trên: Quyền trợ giúp & Đồng hồ đếm ngược -->
+        <div class="stage-top-bar">
+          <!-- Khu vực các quyền trợ giúp (Lifelines) -->
+          <div class="lifelines-container" role="group" aria-label="Quyền trợ giúp">
+            <!-- Trợ giúp 50:50 -->
+            <button id="lifeline5050" class="lifeline-btn" title="Trợ giúp 50:50: Loại bỏ 2 phương án sai"
+              aria-label="Trợ giúp 50:50">
+              <span class="lifeline-disc">
+                <span class="lifeline-code">50:50</span>
+              </span>
+              <span class="lifeline-label">50:50</span>
+              <span class="lifeline-cross" aria-hidden="true">✕</span>
+            </button>
+
+            <!-- Trợ giúp Hỏi ý kiến khán giả -->
+            <button id="lifelineAudience" class="lifeline-btn" title="Hỏi ý kiến khán giả / Lớp học"
+              aria-label="Hỏi ý kiến khán giả">
+              <span class="lifeline-disc">
+                <svg class="lifeline-svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+                </svg>
+              </span>
+              <span class="lifeline-label">Khán giả</span>
+              <span class="lifeline-cross" aria-hidden="true">✕</span>
+            </button>
+
+            <!-- Trợ giúp Đổi câu hỏi -->
+            <button id="lifelineChange" class="lifeline-btn" title="Đổi sang câu hỏi dự phòng khác"
+              aria-label="Đổi câu hỏi">
+              <span class="lifeline-disc">
+                <svg class="lifeline-svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z" />
+                </svg>
+              </span>
+              <span class="lifeline-label">Đổi câu</span>
+              <span class="lifeline-cross" aria-hidden="true">✕</span>
+            </button>
+          </div>
+
+          <!-- Huy hiệu Lượt trả lời (Tối đa 2 người / câu hỏi) -->
+          <div id="attemptBadge" class="attempt-badge turn-1">
+            <span class="attempt-dot">●</span>
+            <span id="attemptText" class="attempt-text">LƯỢT 1: NGƯỜI CHƠI 1</span>
+          </div>
+
+          <!-- Nhóm điều khiển mốc câu hỏi & Điều hướng quay lại/tiếp theo -->
+          <div class="question-nav-group">
+            <button id="prevQuestionBtn" class="nav-question-btn" title="Quay lại câu hỏi trước (Phím ◀ hoặc PageUp)" aria-label="Câu trước">
+              <span class="nav-icon">◀</span>
+              <span class="nav-text">Câu trước</span>
+            </button>
+
+            <div class="current-level-badge">
+              <span class="badge-tag">MỨC CÂU HỎI</span>
+              <span id="questionCounter" class="badge-value">CÂU HỎI 01/10</span>
+            </div>
+
+            <button id="nextQuestionBtn" class="nav-question-btn" title="Chuyển sang câu tiếp theo (Phím ▶ hoặc PageDown)" aria-label="Câu tiếp">
+              <span class="nav-text">Câu tiếp</span>
+              <span class="nav-icon">▶</span>
+            </button>
+          </div>
+
+          <!-- Thẻ timer ẩn để giữ nguyên ID 'timer' phục vụ tích hợp mã nguồn mà không hiển thị -->
+          <span id="timer" style="display: none;" aria-hidden="true"></span>
+        </div>
+
+        <!-- Khung sân khấu trung tâm (Studio Stage Graphic) -->
+        <div class="stage-visual-frame">
+          <div class="studio-light-sweep"></div>
+          <div class="host-podium-emblem">
+            <div class="emblem-mini-crest">★ TƯ TƯỞNG HỒ CHÍ MINH ★</div>
+          </div>
+        </div>
+
+        <!-- Khung hiển thị nội dung câu hỏi (#questionText) -->
+        <!-- Thiết kế dạng Gameshow Hexagonal Lozenge kinh điển -->
+        <div class="question-container">
+          <div class="lozenge-shape question-box">
+            <div class="lozenge-inner">
+              <div class="question-header-tag">
+                <span class="tag-point">◆</span>
+                <span id="questionCategory">NHẬN BIẾT</span>
+                <span class="tag-point">◆</span>
+              </div>
+              <p id="questionText" class="question-text">
+                Theo tư tưởng Hồ Chí Minh, đại đoàn kết toàn dân tộc có vai trò gì đối với sự nghiệp cách mạng Việt Nam?
+              </p>
+            </div>
+            <div class="lozenge-connector connector-left"></div>
+            <div class="lozenge-connector connector-right"></div>
+          </div>
+        </div>
+
+        <!-- 4 Nút đáp án A, B, C, D (2 hàng x 2 cột) -->
+        <div class="answers-grid" role="group" aria-label="4 Phương án trả lời">
+
+          <!-- Đáp án A (#answerA) -->
+          <button id="answerA" class="answer-btn lozenge-shape" data-answer="A">
+            <div class="lozenge-inner answer-content">
+              <span class="answer-key">A:</span>
+              <span class="answer-text">Vấn đề chiến lược</span>
+            </div>
+            <div class="lozenge-connector connector-left"></div>
+            <div class="lozenge-connector connector-right"></div>
+          </button>
+
+          <!-- Đáp án B (#answerB) -->
+          <button id="answerB" class="answer-btn lozenge-shape" data-answer="B">
+            <div class="lozenge-inner answer-content">
+              <span class="answer-key">B:</span>
+              <span class="answer-text">Thủ đoạn nhất thời</span>
+            </div>
+            <div class="lozenge-connector connector-left"></div>
+            <div class="lozenge-connector connector-right"></div>
+          </button>
+
+          <!-- Đáp án C (#answerC) -->
+          <button id="answerC" class="answer-btn lozenge-shape" data-answer="C">
+            <div class="lozenge-inner answer-content">
+              <span class="answer-key">C:</span>
+              <span class="answer-text">Biện pháp tình thế</span>
+            </div>
+            <div class="lozenge-connector connector-left"></div>
+            <div class="lozenge-connector connector-right"></div>
+          </button>
+
+          <!-- Đáp án D (#answerD) -->
+          <button id="answerD" class="answer-btn lozenge-shape" data-answer="D">
+            <div class="lozenge-inner answer-content">
+              <span class="answer-key">D:</span>
+              <span class="answer-text">Sách lược ngoại giao</span>
+            </div>
+            <div class="lozenge-connector connector-left"></div>
+            <div class="lozenge-connector connector-right"></div>
+          </button>
+
+        </div>
+
+      </section>
+
+      <!-- CỘT PHẢI: Bảng tiền thưởng 10 mốc (#prizeLadder) -->
+      <aside class="prize-sidebar" aria-label="Thang tiền thưởng">
+        <div class="ladder-card">
+          <div class="ladder-header">
+            <h2 class="ladder-title">THANG THƯỞNG</h2>
+            <div class="ladder-sub">10 MỐC CHINH PHỤC</div>
+          </div>
+
+          <!-- Danh sách 10 mốc từ cao xuống thấp (10 đến 1) -->
+          <ul id="prizeLadder" class="ladder-list" role="list">
+            <!-- Mốc 10: Mốc tối cao (Grand Milestone) -->
+            <li class="ladder-item safe-milestone grand-milestone" data-step="10">
+              <span class="item-number">10</span>
+              <span class="item-diamond">◆</span>
+              <span class="item-prize">50.000 VNĐ</span>
+              <span class="milestone-badge" title="Mốc Vô Địch">👑</span>
+            </li>
+
+            <!-- Mốc 9 -->
+            <li class="ladder-item" data-step="9">
+              <span class="item-number">9</span>
+              <span class="item-diamond">◆</span>
+              <span class="item-prize">30.000 VNĐ</span>
+            </li>
+
+            <!-- Mốc 8 -->
+            <li class="ladder-item" data-step="8">
+              <span class="item-number">8</span>
+              <span class="item-diamond">◆</span>
+              <span class="item-prize">25.000 VNĐ</span>
+            </li>
+
+            <!-- Mốc 7 -->
+            <li class="ladder-item" data-step="7">
+              <span class="item-number">7</span>
+              <span class="item-diamond">◆</span>
+              <span class="item-prize">20.000 VNĐ</span>
+            </li>
+
+            <!-- Mốc 6 -->
+            <li class="ladder-item" data-step="6">
+              <span class="item-number">6</span>
+              <span class="item-diamond">◆</span>
+              <span class="item-prize">15.000 VNĐ</span>
+            </li>
+
+            <!-- Mốc 5: Mốc an toàn số 1 (Safe Milestone 1) -->
+            <li class="ladder-item safe-milestone" data-step="5">
+              <span class="item-number">5</span>
+              <span class="item-diamond">◆</span>
+              <span class="item-prize">10.000 VNĐ</span>
+              <span class="milestone-badge" title="Mốc An Toàn">★</span>
+            </li>
+
+            <!-- Mốc 4 -->
+            <li class="ladder-item" data-step="4">
+              <span class="item-number">4</span>
+              <span class="item-diamond">◆</span>
+              <span class="item-prize">5.000 VNĐ</span>
+            </li>
+
+            <!-- Mốc 3 -->
+            <li class="ladder-item" data-step="3">
+              <span class="item-number">3</span>
+              <span class="item-diamond">◆</span>
+              <span class="item-prize">3.000 VNĐ</span>
+            </li>
+
+            <!-- Mốc 2 -->
+            <li class="ladder-item" data-step="2">
+              <span class="item-number">2</span>
+              <span class="item-diamond">◆</span>
+              <span class="item-prize">2.000 VNĐ</span>
+            </li>
+
+            <!-- Mốc 1: Mốc khởi đầu (Mặc định sáng ở câu 1) -->
+            <li class="ladder-item current" data-step="1">
+              <span class="item-number">1</span>
+              <span class="item-diamond">◆</span>
+              <span class="item-prize">1 kẹo mút</span>
+            </li>
+          </ul>
+
+          <div class="ladder-footer">
+            <div class="legend-item">
+              <span class="legend-dot safe-dot">★</span>
+              <span>Mốc an toàn (5, 10)</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- 3. MÀN HÌNH KẾT THÚC (#resultScreen) -->
+  <!-- ========================================================================= -->
+  <main id="resultScreen" class="screen screen-result">
+    <!-- Confetti & Celebration Layer -->
+    <canvas id="victoryCanvas" class="victory-canvas"></canvas>
+
+    <div class="result-card-container">
+      <div class="result-glow-ring"></div>
+
+      <div class="result-card">
+        <!-- Huy hiệu kết thúc / Cup vinh danh -->
+        <div class="result-badge-wrapper">
+          <div id="resultIcon" class="result-trophy">🏆</div>
+        </div>
+
+        <h2 id="resultTitle" class="result-headline">XUẤT SẮC CHINH PHỤC!</h2>
+        <p id="resultSubtitle" class="result-subtext">Bạn đã hoàn thành chặng đường tri thức Tư tưởng Hồ Chí Minh</p>
+
+        <!-- Thẻ thống kê thành tích -->
+        <div class="stats-summary-grid">
+          <div class="stat-box">
+            <span class="stat-label">SỐ CÂU ĐÚNG</span>
+            <div class="stat-value">
+              <span id="correctCount">10</span>
+              <span class="stat-total">/10</span>
+            </div>
+          </div>
+
+          <div class="stat-box highlight-prize">
+            <span class="stat-label">TIỀN THƯỞNG ĐẠT ĐƯỢC</span>
+            <div class="stat-value">
+              <span id="prizeWon">50.000 VNĐ</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lời trích truyền cảm hứng học tập -->
+        <div class="quote-container">
+          <p class="quote-text">
+            “Học để làm việc, làm người, làm cán bộ. Học để phụng sự đoàn thể, giai cấp và nhân dân, Tổ quốc và nhân
+            loại.”
+          </p>
+          <span class="quote-author">— Chủ tịch Hồ Chí Minh —</span>
+        </div>
+
+        <!-- Các nút hành động: Chơi lại & Về Trang chủ -->
+        <div class="result-actions-group">
+          <button id="restartButton" class="btn-gameshow-cta btn-restart">
+            <span class="cta-shine"></span>
+            <span class="cta-icon">↺</span>
+            <span class="cta-text">CHƠI LẠI</span>
+          </button>
+
+          <button id="homeButton" class="btn-gameshow-secondary btn-home">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+            <span class="cta-text">QUAY VỀ TRANG CHỦ</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL / OVERLAY TRỢ GIÚP (Hỏi ý kiến khán giả, v.v.) -->
+  <!-- ========================================================================= -->
+  <div id="audienceModal" class="gameshow-modal" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content lozenge-modal">
+      <div class="modal-header">
+        <h3 class="modal-title">📊 KẾT QUẢ Ý KIẾN KHÁN GIẢ</h3>
+        <button id="closeAudienceModal" class="modal-close-btn" aria-label="Đóng">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">Ý kiến bình chọn của sinh viên trong hội trường:</p>
+        <div class="audience-chart">
+          <!-- Cột A -->
+          <div class="chart-col">
+            <div class="bar-track">
+              <div id="pollBarA" class="bar-fill" style="height: 72%;">
+                <span class="bar-percent">72%</span>
+              </div>
+            </div>
+            <span class="col-letter">A</span>
+          </div>
+          <!-- Cột B -->
+          <div class="chart-col">
+            <div class="bar-track">
+              <div id="pollBarB" class="bar-fill" style="height: 14%;">
+                <span class="bar-percent">14%</span>
+              </div>
+            </div>
+            <span class="col-letter">B</span>
+          </div>
+          <!-- Cột C -->
+          <div class="chart-col">
+            <div class="bar-track">
+              <div id="pollBarC" class="bar-fill" style="height: 9%;">
+                <span class="bar-percent">9%</span>
+              </div>
+            </div>
+            <span class="col-letter">C</span>
+          </div>
+          <!-- Cột D -->
+          <div class="chart-col">
+            <div class="bar-track">
+              <div id="pollBarD" class="bar-fill" style="height: 5%;">
+                <span class="bar-percent">5%</span>
+              </div>
+            </div>
+            <span class="col-letter">D</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="confirmAudienceModal" class="btn-gameshow-cta btn-modal-confirm">TIẾP TỤC CHỌN ĐÁP ÁN</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thông báo hiệu ứng (Toast Alert) -->
+  <div id="gameToast" class="game-toast" aria-live="polite"></div>
+
+  <!-- ========================================================================= -->
+  <!-- SCRIPTS -->
+  <!-- ========================================================================= -->
+  <!-- 1. Giao diện & Âm thanh mô phỏng trực quan thuần Frontend -->
+  <script src="ui.js"></script>
+
+  <!-- 2. Bộ câu hỏi mẫu & Bộ điều khiển trò chơi (Có thể tách rời hoặc nâng cấp linh hoạt) -->
+  <script src="questions.js"></script>
+  <script src="game.js"></script>
+</body>
+
+</html>
