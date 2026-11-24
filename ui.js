@@ -468,9 +468,9 @@
 
     // Reset lại trạng thái các quyền trợ giúp
     resetLifelines() {
-      ['lifeline5050', 'lifelineAudience', 'lifelineChange'].forEach(id => {
+      ['lifeline5050', 'lifelineAudience'].forEach(id => {
         const btn = document.getElementById(id);
-        if (btn) btn.classList.remove('used');
+        if (btn) btn.classList.remove('used', 'locked');
       });
     },
 

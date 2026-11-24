@@ -137,6 +137,29 @@
     }
   }
 
+  // Cập nhật trạng thái mở khóa quyền trợ giúp (Chỉ dùng được ở Câu 8 và Câu 9: index 7 và index 8)
+  function updateLifelinesAvailability(index) {
+    const isUnlocked = (index === 7 || index === 8);
+
+    if (lifeline5050Btn) {
+      if (!lifelinesState.fiftyFifty) {
+        lifeline5050Btn.classList.toggle('locked', !isUnlocked);
+        lifeline5050Btn.title = isUnlocked
+          ? "Trợ giúp 50:50: Loại bỏ 2 phương án sai"
+          : "Trợ giúp 50:50: Chỉ sử dụng tại Câu 8 và Câu 9";
+      }
+    }
+
+    if (lifelineAudienceBtn) {
+      if (!lifelinesState.audience) {
+        lifelineAudienceBtn.classList.toggle('locked', !isUnlocked);
+        lifelineAudienceBtn.title = isUnlocked
+          ? "Hỏi ý kiến khán giả / Lớp học"
+          : "Hỏi ý kiến khán giả: Chỉ sử dụng tại Câu 8 và Câu 9";
+      }
+    }
+  }
+
   // Điều hướng quay lại câu hỏi trước
   function goToPrevQuestion() {
     if (isAnsweringLocked) return;
@@ -226,6 +249,7 @@
     });
 
     updateNavButtons();
+    updateLifelinesAvailability(index);
     startTimer();
   }
 
@@ -317,11 +341,18 @@
   }
 
   // --------------------------------------------------------------------------
-  // F. XỬ LÝ BA QUYỀN TRỢ GIÚP (LIFELINES)
+  // F. XỬ LÝ HAI QUYỀN TRỢ GIÚP (CHỈ DÙNG ĐƯỢC TẠI CÂU 8 VÀ CÂU 9)
   // --------------------------------------------------------------------------
 
-  // 1. Trợ giúp 50:50
+  // 1. Trợ giúp 50:50 (Chỉ dùng được ở Câu 8 và Câu 9: index 7 và 8)
   function handleLifeline5050() {
+    if (currentQuestionIndex !== 7 && currentQuestionIndex !== 8) {
+      if (window.GameshowUI) {
+        window.GameshowUI.showToast("⚠️ Quyền 50:50 chỉ mở khóa sử dụng tại Câu 8 và Câu 9!");
+      }
+      return;
+    }
+
     if (lifelinesState.fiftyFifty || isAnsweringLocked || !currentQuestionData) return;
 
     lifelinesState.fiftyFifty = true;
@@ -344,8 +375,15 @@
     });
   }
 
-  // 2. Trợ giúp Hỏi ý kiến khán giả
+  // 2. Trợ giúp Hỏi ý kiến khán giả (Chỉ dùng được ở Câu 8 và Câu 9: index 7 và 8)
   function handleLifelineAudience() {
+    if (currentQuestionIndex !== 7 && currentQuestionIndex !== 8) {
+      if (window.GameshowUI) {
+        window.GameshowUI.showToast("⚠️ Quyền Khán giả chỉ mở khóa sử dụng tại Câu 8 và Câu 9!");
+      }
+      return;
+    }
+
     if (lifelinesState.audience || isAnsweringLocked || !currentQuestionData) return;
 
     lifelinesState.audience = true;
@@ -357,21 +395,9 @@
     }
   }
 
-  // 3. Trợ giúp Đổi câu hỏi
+  // 3. Trợ giúp Đổi câu hỏi (Đã bỏ hẳn theo yêu cầu)
   function handleLifelineChange() {
-    if (lifelinesState.change || isAnsweringLocked || !backupQuestion) return;
-
-    lifelinesState.change = true;
-    if (window.GameshowUI) {
-      window.GameshowUI.setLifelineUsed('lifelineChange');
-      window.GameshowUI.Sound.playLifeline();
-      window.GameshowUI.showToast("ĐÃ ĐỔI SANG CÂU HỎI MỚI!");
-    }
-
-    // Thay thế câu hỏi hiện tại bằng câu hỏi dự phòng
-    currentQuestionData = backupQuestion;
-    activeQuestions[currentQuestionIndex] = backupQuestion;
-    renderQuestion(currentQuestionIndex);
+    // Đã loại bỏ quyền trợ giúp đổi câu hỏi
   }
 
   // --------------------------------------------------------------------------

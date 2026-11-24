@@ -111,7 +111,7 @@
         <div class="info-pill">
           <span>🎯 10 Mốc Thử Thách</span>
           <span class="separator">•</span>
-          <span>💡 3 Quyền Trợ Giúp</span>
+          <span>💡 2 Quyền Trợ Giúp (Câu 8, 9)</span>
           <span class="separator">•</span>
           <span>👥 Tối Đa 2 Người / Câu</span>
         </div>
@@ -166,8 +166,8 @@
             <li class="rule-item">
               <div class="rule-icon-box">💡</div>
               <div class="rule-text-box">
-                <h4 class="rule-title">3 Quyền Trợ Giúp</h4>
-                <p class="rule-desc">Bao gồm: <strong>50:50</strong>, <strong>Hỏi ý kiến khán giả</strong> và <strong>Đổi câu hỏi</strong>.</p>
+                <h4 class="rule-title">2 Quyền Trợ Giúp (Câu 8 & Câu 9)</h4>
+                <p class="rule-desc">Bao gồm: <strong>50:50</strong> và <strong>Hỏi ý kiến khán giả</strong> (chỉ mở khóa kích hoạt tại <strong>Câu 8</strong> và <strong>Câu 9</strong>).</p>
               </div>
             </li>
 
@@ -275,20 +275,21 @@
 
         <!-- Hàng trên: Quyền trợ giúp & Đồng hồ đếm ngược -->
         <div class="stage-top-bar">
-          <!-- Khu vực các quyền trợ giúp (Lifelines) -->
+          <!-- Khu vực các quyền trợ giúp (Lifelines) - Chỉ mở khóa ở Câu 8 & Câu 9 -->
           <div class="lifelines-container" role="group" aria-label="Quyền trợ giúp">
             <!-- Trợ giúp 50:50 -->
-            <button id="lifeline5050" class="lifeline-btn" title="Trợ giúp 50:50: Loại bỏ 2 phương án sai"
+            <button id="lifeline5050" class="lifeline-btn locked" title="Trợ giúp 50:50: Chỉ sử dụng tại Câu 8 và Câu 9"
               aria-label="Trợ giúp 50:50">
               <span class="lifeline-disc">
                 <span class="lifeline-code">50:50</span>
               </span>
               <span class="lifeline-label">50:50</span>
+              <span class="lifeline-unlock-tag">Câu 8-9</span>
               <span class="lifeline-cross" aria-hidden="true">✕</span>
             </button>
 
             <!-- Trợ giúp Hỏi ý kiến khán giả -->
-            <button id="lifelineAudience" class="lifeline-btn" title="Hỏi ý kiến khán giả / Lớp học"
+            <button id="lifelineAudience" class="lifeline-btn locked" title="Hỏi ý kiến khán giả: Chỉ sử dụng tại Câu 8 và Câu 9"
               aria-label="Hỏi ý kiến khán giả">
               <span class="lifeline-disc">
                 <svg class="lifeline-svg" viewBox="0 0 24 24" fill="currentColor">
@@ -297,21 +298,12 @@
                 </svg>
               </span>
               <span class="lifeline-label">Khán giả</span>
+              <span class="lifeline-unlock-tag">Câu 8-9</span>
               <span class="lifeline-cross" aria-hidden="true">✕</span>
             </button>
 
-            <!-- Trợ giúp Đổi câu hỏi -->
-            <button id="lifelineChange" class="lifeline-btn" title="Đổi sang câu hỏi dự phòng khác"
-              aria-label="Đổi câu hỏi">
-              <span class="lifeline-disc">
-                <svg class="lifeline-svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z" />
-                </svg>
-              </span>
-              <span class="lifeline-label">Đổi câu</span>
-              <span class="lifeline-cross" aria-hidden="true">✕</span>
-            </button>
+            <!-- Bỏ hẳn quyền trợ giúp Đổi câu hỏi (ẩn thẻ để tránh lỗi tham chiếu ID) -->
+            <button id="lifelineChange" class="lifeline-btn" style="display: none;" aria-hidden="true"></button>
           </div>
 
           <!-- Huy hiệu Lượt trả lời (Tối đa 2 người / câu hỏi) -->

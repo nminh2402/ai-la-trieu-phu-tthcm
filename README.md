@@ -58,10 +58,10 @@ Mở thư mục `c:\Users\Admin\TTHCM`, nhấp đúp vào file **`index.html`** 
      - Nếu cũng **Sai**: Tự động bừng sáng đáp án ĐÚNG màu xanh để cả lớp học hỏi, sau đó chuyển sang câu tiếp.
    - **Mỗi câu hỏi riêng biệt**: Cuộc thi sẽ đi qua trọn vẹn cả 10 câu để cả lớp đều được tham gia thảo luận.
 
-4. **3 Quyền trợ giúp:**
+4. **2 Quyền trợ giúp (Chỉ dùng tại Câu 8 và Câu 9):**
    - `50:50`: Loại bỏ 2 phương án sai ngẫu nhiên.
    - `Khán giả`: Mở biểu đồ cột thăm dò ý kiến sinh viên trong hội trường.
-   - `Đổi câu`: Đổi sang câu hỏi dự phòng mới.
+   - *(Quyền trợ giúp tự động khóa ở các câu 1-7 và câu 10, chỉ mở khóa kích hoạt tại Câu 8 và Câu 9).*
 
 ---
 

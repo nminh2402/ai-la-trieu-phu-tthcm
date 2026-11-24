@@ -881,14 +881,45 @@ body {
 }
 
 /* Hover on Lifeline */
-.lifeline-btn:hover:not(.used) .lifeline-disc {
+.lifeline-btn:hover:not(.used):not(.locked) .lifeline-disc {
   border-color: var(--gold-primary);
   box-shadow: 0 0 20px rgba(245, 179, 0, 0.7);
   transform: translateY(-2px) scale(1.06);
 }
 
-.lifeline-btn:hover:not(.used) .lifeline-label {
+.lifeline-btn:hover:not(.used):not(.locked) .lifeline-label {
   color: var(--gold-light);
+}
+
+/* Trạng thái khóa tạm thời (khi chưa đến Câu 8, 9) */
+.lifeline-btn.locked {
+  cursor: not-allowed;
+  opacity: 0.45;
+  filter: grayscale(60%);
+}
+
+.lifeline-btn.locked .lifeline-disc {
+  border-color: rgba(100, 116, 139, 0.4);
+  box-shadow: none;
+}
+
+.lifeline-btn.locked:hover .lifeline-disc {
+  transform: none;
+  box-shadow: none;
+  border-color: rgba(100, 116, 139, 0.4);
+}
+
+.lifeline-unlock-tag {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #f59e0b;
+  letter-spacing: 0.5px;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  padding: 1px 6px;
+  border-radius: 8px;
+  margin-top: 2px;
 }
 
 /* Trạng thái đã sử dụng của Lifeline (.used) */
