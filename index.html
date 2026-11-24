@@ -120,6 +120,151 @@
   </main>
 
   <!-- ========================================================================= -->
+  <!-- 1.5 MÀN HÌNH GIỚI THIỆU THANG THƯỞNG & THỂ LỆ (#introScreen) -->
+  <!-- ========================================================================= -->
+  <main id="introScreen" class="screen screen-intro">
+    <div class="intro-content-container">
+      
+      <!-- Tiêu đề giới thiệu -->
+      <div class="intro-header">
+        <span class="sub-badge">GIỚI THIỆU CUỘC THI</span>
+        <h2 class="intro-title">THỂ LỆ & THANG PHẦN THƯỞNG</h2>
+        <div class="intro-edition-line">
+          <span class="edition-line"></span>
+          <span class="edition-text">10 MỐC CHINH PHỤC TRI THỨC</span>
+          <span class="edition-line"></span>
+        </div>
+      </div>
+
+      <!-- Bố cục 2 cột: Thể lệ (Trái) & Bảng thưởng (Phải) -->
+      <div class="intro-grid">
+        <!-- Cột trái: Thể lệ & Quyền trợ giúp -->
+        <div class="intro-card intro-rules-card">
+          <div class="card-header-tag">
+            <span class="tag-point">◆</span>
+            <span>QUY TẮC THI ĐẤU</span>
+            <span class="tag-point">◆</span>
+          </div>
+
+          <ul class="rules-list">
+            <li class="rule-item">
+              <div class="rule-icon-box">🎯</div>
+              <div class="rule-text-box">
+                <h4 class="rule-title">10 Câu Hỏi Độc Lập</h4>
+                <p class="rule-desc">Mỗi câu hỏi là một chủ đề riêng biệt. Cả lớp sẽ cùng khám phá và hoàn thành trọn vẹn cả 10 câu.</p>
+              </div>
+            </li>
+
+            <li class="rule-item">
+              <div class="rule-icon-box">👥</div>
+              <div class="rule-text-box">
+                <h4 class="rule-title">Tối Đa 2 Người / Câu</h4>
+                <p class="rule-desc">Nếu người thứ nhất trả lời chưa đúng, cơ hội sẽ mở ra cho người thứ 2 giơ tay cứu điểm.</p>
+              </div>
+            </li>
+
+            <li class="rule-item">
+              <div class="rule-icon-box">💡</div>
+              <div class="rule-text-box">
+                <h4 class="rule-title">3 Quyền Trợ Giúp</h4>
+                <p class="rule-desc">Bao gồm: <strong>50:50</strong>, <strong>Hỏi ý kiến khán giả</strong> và <strong>Đổi câu hỏi</strong>.</p>
+              </div>
+            </li>
+
+            <li class="rule-item highlight-rule">
+              <div class="rule-icon-box">⭐</div>
+              <div class="rule-text-box">
+                <h4 class="rule-title">Mốc An Toàn (Câu 5 & Câu 10)</h4>
+                <p class="rule-desc">Vượt qua các mốc này để đảm bảo phần thưởng danh dự cao nhất của chương trình!</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Cột phải: Bảng thang phần thưởng hoành tráng -->
+        <div class="intro-card intro-ladder-card">
+          <div class="card-header-tag">
+            <span class="tag-point">◆</span>
+            <span>BẢNG THANG THƯỞNG CHI TIẾT</span>
+            <span class="tag-point">◆</span>
+          </div>
+
+          <ul id="introPrizeLadder" class="intro-ladder-list">
+            <li class="intro-ladder-item grand-milestone" data-step="10">
+              <span class="intro-step-num">10</span>
+              <span class="intro-step-diamond">◆</span>
+              <span class="intro-step-prize item-prize">50.000 VNĐ</span>
+              <span class="intro-step-badge">👑 VÔ ĐỊCH</span>
+            </li>
+            <li class="intro-ladder-item" data-step="9">
+              <span class="intro-step-num">9</span>
+              <span class="intro-step-diamond">◆</span>
+              <span class="intro-step-prize item-prize">30.000 VNĐ</span>
+            </li>
+            <li class="intro-ladder-item" data-step="8">
+              <span class="intro-step-num">8</span>
+              <span class="intro-step-diamond">◆</span>
+              <span class="intro-step-prize item-prize">25.000 VNĐ</span>
+            </li>
+            <li class="intro-ladder-item" data-step="7">
+              <span class="intro-step-num">7</span>
+              <span class="intro-step-diamond">◆</span>
+              <span class="intro-step-prize item-prize">20.000 VNĐ</span>
+            </li>
+            <li class="intro-ladder-item" data-step="6">
+              <span class="intro-step-num">6</span>
+              <span class="intro-step-diamond">◆</span>
+              <span class="intro-step-prize item-prize">15.000 VNĐ</span>
+            </li>
+            <li class="intro-ladder-item safe-milestone" data-step="5">
+              <span class="intro-step-num">5</span>
+              <span class="intro-step-diamond">◆</span>
+              <span class="intro-step-prize item-prize">10.000 VNĐ</span>
+              <span class="intro-step-badge">★ AN TOÀN</span>
+            </li>
+            <li class="intro-ladder-item" data-step="4">
+              <span class="intro-step-num">4</span>
+              <span class="intro-step-diamond">◆</span>
+              <span class="intro-step-prize item-prize">5.000 VNĐ</span>
+            </li>
+            <li class="intro-ladder-item" data-step="3">
+              <span class="intro-step-num">3</span>
+              <span class="intro-step-diamond">◆</span>
+              <span class="intro-step-prize item-prize">3.000 VNĐ</span>
+            </li>
+            <li class="intro-ladder-item" data-step="2">
+              <span class="intro-step-num">2</span>
+              <span class="intro-step-diamond">◆</span>
+              <span class="intro-step-prize item-prize">2.000 VNĐ</span>
+            </li>
+            <li class="intro-ladder-item first-milestone" data-step="1">
+              <span class="intro-step-num">1</span>
+              <span class="intro-step-diamond">◆</span>
+              <span class="intro-step-prize item-prize">1 kẹo mút</span>
+              <span class="intro-step-badge">🍬 KHỞI ĐIỂM</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Hàng nút hành động -->
+      <div class="intro-actions-bar">
+        <button id="backToStartBtn" class="btn-gameshow-secondary">
+          <span class="cta-icon">◀</span>
+          <span class="cta-text">QUAY LẠI</span>
+        </button>
+
+        <button id="startGameFromIntroBtn" class="btn-gameshow-cta btn-start-match">
+          <span class="cta-shine"></span>
+          <span class="cta-icon">▶</span>
+          <span class="cta-text">BƯỚC VÀO TRƯỜNG QUAY</span>
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================= -->
   <!-- 2. MÀN HÌNH CHƠI GAME CHÍNH (#gameScreen) -->
   <!-- ========================================================================= -->
   <main id="gameScreen" class="screen screen-game">

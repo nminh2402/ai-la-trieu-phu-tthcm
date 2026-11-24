@@ -170,11 +170,11 @@ const PRIZE_VALUES = [
   "1 kẹo mút",
   "2 kẹo mút",
   "3 kẹo mút",
+  "1 gói  bim bim",
+  "1 chân gà bà tuyết",      // Mốc an toàn số 5
   "5.000 VNĐ",
-  "5.000 VNĐ",      // Mốc an toàn số 5
   "10.000 VNĐ",
   "15.000 VNĐ",
   "20.000 VNĐ",
-  "25.000 VNĐ",
-  "30.000 VNĐ"       // Mốc tối cao số 10
+  "25.000 VNĐ"       // Mốc tối cao số 10
 ];

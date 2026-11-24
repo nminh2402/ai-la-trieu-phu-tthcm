@@ -20,10 +20,13 @@
   // 1. DOM ELEMENTS
   // --------------------------------------------------------------------------
   const startScreen = document.getElementById('startScreen');
+  const introScreen = document.getElementById('introScreen');
   const gameScreen = document.getElementById('gameScreen');
   const resultScreen = document.getElementById('resultScreen');
 
   const startButton = document.getElementById('startButton');
+  const startGameFromIntroBtn = document.getElementById('startGameFromIntroBtn');
+  const backToStartBtn = document.getElementById('backToStartBtn');
   const restartButton = document.getElementById('restartButton');
   const homeButton = document.getElementById('homeButton');
 
@@ -170,7 +173,7 @@
   // 3. SCREEN SWITCHING (QUẢN LÝ CHUYỂN MÀN HÌNH)
   // --------------------------------------------------------------------------
   function showScreen(screenId) {
-    [startScreen, gameScreen, resultScreen].forEach(scr => {
+    [startScreen, introScreen, gameScreen, resultScreen].forEach(scr => {
       if (scr) scr.classList.remove('active');
     });
 
@@ -321,22 +324,42 @@
   // 7. EVENT LISTENERS GIAO DIỆN CƠ BẢN
   // --------------------------------------------------------------------------
   function setupUIEventListeners() {
-    // Nút Bắt đầu
+    // Nút Bắt đầu từ Màn hình Mở đầu -> Chuyển sang Màn hình Giới thiệu Thang thưởng & Thể lệ
     if (startButton) {
       startButton.addEventListener('click', () => {
         SoundManager.playClick();
+        showScreen('introScreen');
+        if (typeof window.renderPrizeLadderUI === 'function') {
+          window.renderPrizeLadderUI();
+        }
+      });
+    }
+
+    // Nút Bắt đầu thi từ Màn hình Giới thiệu Thang thưởng -> Vào Trường quay chơi chính
+    if (startGameFromIntroBtn) {
+      startGameFromIntroBtn.addEventListener('click', () => {
+        SoundManager.playClick();
         showScreen('gameScreen');
-        // Kích hoạt custom event để game.js lắng nghe nếu có
         document.dispatchEvent(new CustomEvent('gameshow:start'));
       });
     }
 
-    // Nút Chơi lại
+    // Nút Quay lại Màn hình Mở đầu từ Màn hình Giới thiệu
+    if (backToStartBtn) {
+      backToStartBtn.addEventListener('click', () => {
+        SoundManager.playClick();
+        showScreen('startScreen');
+      });
+    }
+
+    // Nút Chơi lại từ Màn hình Kết thúc
     if (restartButton) {
       restartButton.addEventListener('click', () => {
         SoundManager.playClick();
-        showScreen('gameScreen');
-        document.dispatchEvent(new CustomEvent('gameshow:restart'));
+        showScreen('introScreen');
+        if (typeof window.renderPrizeLadderUI === 'function') {
+          window.renderPrizeLadderUI();
+        }
       });
     }
 

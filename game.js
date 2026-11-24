@@ -424,9 +424,11 @@
   // --------------------------------------------------------------------------
   // H. KHỞI TẠO VÀ BẮT ĐẦU TRÒ CHƠI
   // --------------------------------------------------------------------------
-  // Đồng bộ giá trị mốc tiền thưởng từ PRIZE_VALUES (trong questions.js) vào bảng HTML #prizeLadder
+  // Đồng bộ giá trị mốc tiền thưởng từ PRIZE_VALUES (trong questions.js) vào cả #prizeLadder và #introPrizeLadder
   function renderPrizeLadderUI() {
     if (typeof PRIZE_VALUES === 'undefined' || !Array.isArray(PRIZE_VALUES)) return;
+    
+    // 1. Cập nhật thang thưởng ở màn hình chơi game (#prizeLadder)
     const ladderItems = document.querySelectorAll('#prizeLadder .ladder-item');
     ladderItems.forEach(item => {
       const step = parseInt(item.getAttribute('data-step'), 10);
@@ -435,10 +437,25 @@
         prizeEl.textContent = PRIZE_VALUES[step - 1];
       }
     });
+
+    // 2. Cập nhật thang thưởng ở màn hình giới thiệu (#introPrizeLadder)
+    const introLadderItems = document.querySelectorAll('#introPrizeLadder .intro-ladder-item');
+    introLadderItems.forEach(item => {
+      const step = parseInt(item.getAttribute('data-step'), 10);
+      const prizeEl = item.querySelector('.item-prize');
+      if (prizeEl && PRIZE_VALUES[step - 1] !== undefined) {
+        prizeEl.textContent = PRIZE_VALUES[step - 1];
+      }
+    });
+
+    // 3. Cập nhật giải thưởng mốc 10 trên màn hình kết thúc
     if (prizeWonEl && PRIZE_VALUES[9]) {
       prizeWonEl.textContent = PRIZE_VALUES[9];
     }
   }
+
+  // Đưa hàm ra phạm vi toàn cục để ui.js có thể gọi
+  window.renderPrizeLadderUI = renderPrizeLadderUI;
 
   function initGame() {
     renderPrizeLadderUI();
