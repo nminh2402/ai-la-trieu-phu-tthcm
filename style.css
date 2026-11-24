@@ -1900,6 +1900,80 @@ body {
   margin-bottom: 20px;
 }
 
+/* Classroom Audience Modal Styles */
+.classroom-modal-content {
+  max-width: 540px;
+  text-align: center;
+  border: 2px solid var(--blue-glow);
+  box-shadow: 0 0 45px rgba(0, 210, 255, 0.4), 0 20px 60px rgba(0, 0, 0, 0.9);
+}
+
+.classroom-modal-body {
+  padding: 16px 8px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.classroom-icon-pulse {
+  font-size: 3.5rem;
+  margin-bottom: 12px;
+  display: inline-block;
+  animation: pulseIcon 1.6s infinite ease-in-out;
+  filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.6));
+}
+
+@keyframes pulseIcon {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.classroom-headline {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #ffd700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+}
+
+.classroom-subtext {
+  font-size: 1rem;
+  color: #e2e8f0;
+  line-height: 1.6;
+  max-width: 440px;
+  margin: 0 auto 18px;
+}
+
+.classroom-subtext strong {
+  color: #38bdf8;
+}
+
+.classroom-tip-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 210, 255, 0.08);
+  border: 1px dashed rgba(0, 210, 255, 0.5);
+  border-radius: 12px;
+  padding: 12px 18px;
+  color: #a5f3fc;
+  font-size: 0.92rem;
+  text-align: left;
+  max-width: 460px;
+}
+
+.classroom-modal-footer {
+  display: flex;
+  justify-content: center;
+}
+
 /* Biểu đồ bình chọn khán giả (Bar Chart) */
 .audience-chart {
   display: flex;

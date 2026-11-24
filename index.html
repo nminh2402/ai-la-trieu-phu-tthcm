@@ -572,56 +572,31 @@
   <!-- ========================================================================= -->
   <!-- MODAL / OVERLAY TRỢ GIÚP (Hỏi ý kiến khán giả, v.v.) -->
   <!-- ========================================================================= -->
+  <!-- MODAL / OVERLAY TRỢ GIÚP (Hỏi ý kiến khán giả trực tiếp tại lớp) -->
+  <!-- ========================================================================= -->
   <div id="audienceModal" class="gameshow-modal" aria-hidden="true">
     <div class="modal-backdrop"></div>
-    <div class="modal-content lozenge-modal">
+    <div class="modal-content lozenge-modal classroom-modal-content">
       <div class="modal-header">
-        <h3 class="modal-title">📊 KẾT QUẢ Ý KIẾN KHÁN GIẢ</h3>
+        <h3 class="modal-title">👥 TRỢ GIÚP TỪ KHÁN GIẢ TRONG LỚP</h3>
         <button id="closeAudienceModal" class="modal-close-btn" aria-label="Đóng">✕</button>
       </div>
-      <div class="modal-body">
-        <p class="modal-desc">Ý kiến bình chọn của sinh viên trong hội trường:</p>
-        <div class="audience-chart">
-          <!-- Cột A -->
-          <div class="chart-col">
-            <div class="bar-track">
-              <div id="pollBarA" class="bar-fill" style="height: 72%;">
-                <span class="bar-percent">72%</span>
-              </div>
-            </div>
-            <span class="col-letter">A</span>
-          </div>
-          <!-- Cột B -->
-          <div class="chart-col">
-            <div class="bar-track">
-              <div id="pollBarB" class="bar-fill" style="height: 14%;">
-                <span class="bar-percent">14%</span>
-              </div>
-            </div>
-            <span class="col-letter">B</span>
-          </div>
-          <!-- Cột C -->
-          <div class="chart-col">
-            <div class="bar-track">
-              <div id="pollBarC" class="bar-fill" style="height: 9%;">
-                <span class="bar-percent">9%</span>
-              </div>
-            </div>
-            <span class="col-letter">C</span>
-          </div>
-          <!-- Cột D -->
-          <div class="chart-col">
-            <div class="bar-track">
-              <div id="pollBarD" class="bar-fill" style="height: 5%;">
-                <span class="bar-percent">5%</span>
-              </div>
-            </div>
-            <span class="col-letter">D</span>
-          </div>
+      <div class="modal-body classroom-modal-body">
+        <div class="classroom-icon-pulse">🎤</div>
+        <h4 class="classroom-headline">MỜI 1 BẠN SINH VIÊN GIƠ TAY TRỢ GIÚP!</h4>
+        <p class="classroom-subtext">
+          Thí sinh được quyền nhờ <strong>1 bạn sinh viên bất kỳ trong lớp</strong> đứng dậy phát biểu, đưa ra ý kiến và phân tích gợi ý đáp án trực tiếp.
+        </p>
+        <div class="classroom-tip-box">
+          <span class="tip-icon">💡</span>
+          <span class="tip-text">MC & Thí sinh hãy chỉ định 1 bạn khán giả trong lớp và lắng nghe chia sẻ của bạn nhé!</span>
         </div>
       </div>
-      <div class="modal-footer">
-        <button id="confirmAudienceModal" class="btn-gameshow-cta btn-modal-confirm">TIẾP TỤC CHỌN ĐÁP ÁN</button>
+      <div class="modal-footer classroom-modal-footer">
+        <button id="confirmAudienceModal" class="btn-gameshow-cta btn-modal-confirm">
+          <span class="cta-shine"></span>
+          <span class="cta-text">ĐÃ NHẬN TRỢ GIÚP - TIẾP TỤC CHỌN ĐÁP ÁN</span>
+        </button>
       </div>
     </div>
   </div>

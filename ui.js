@@ -438,18 +438,9 @@
       });
     },
 
-    // Hiển thị modal ý kiến khán giả với dữ liệu phần trăm
-    openAudienceModal(percents = { A: 68, B: 15, C: 10, D: 7 }) {
+    // Hiển thị modal ý kiến khán giả trực tiếp từ người thật trong lớp
+    openAudienceModal() {
       if (!audienceModal) return;
-      ['A', 'B', 'C', 'D'].forEach(letter => {
-        const bar = document.getElementById(`pollBar${letter}`);
-        if (bar) {
-          const val = percents[letter] || 0;
-          bar.style.height = `${val}%`;
-          const textSpan = bar.querySelector('.bar-percent');
-          if (textSpan) textSpan.textContent = `${val}%`;
-        }
-      });
       audienceModal.classList.add('active');
       SoundManager.playLifeline();
     },

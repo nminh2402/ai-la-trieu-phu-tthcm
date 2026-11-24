@@ -389,9 +389,7 @@
     lifelinesState.audience = true;
     if (window.GameshowUI) {
       window.GameshowUI.setLifelineUsed('lifelineAudience');
-      // Lấy tỉ lệ biểu quyết mô phỏng theo câu hỏi
-      const pollData = currentQuestionData.audiencePoll || { A: 25, B: 25, C: 25, D: 25 };
-      window.GameshowUI.openAudienceModal(pollData);
+      window.GameshowUI.openAudienceModal();
     }
   }
 

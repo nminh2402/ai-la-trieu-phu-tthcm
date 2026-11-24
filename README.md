@@ -60,7 +60,7 @@ Mở thư mục `c:\Users\Admin\TTHCM`, nhấp đúp vào file **`index.html`** 
 
 4. **2 Quyền trợ giúp (Chỉ dùng tại Câu 8 và Câu 9):**
    - `50:50`: Loại bỏ 2 phương án sai ngẫu nhiên.
-   - `Khán giả`: Mở biểu đồ cột thăm dò ý kiến sinh viên trong hội trường.
+   - `Khán giả`: Mời trực tiếp 1 bạn sinh viên người thật trong lớp đứng dậy phát biểu trợ giúp thí sinh (không dùng biểu đồ phần trăm ảo).
    - *(Quyền trợ giúp tự động khóa ở các câu 1-7 và câu 10, chỉ mở khóa kích hoạt tại Câu 8 và Câu 9).*
 
 ---
