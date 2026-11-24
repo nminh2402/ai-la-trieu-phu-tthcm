@@ -16,3 +16,6 @@ ehthumbs.db
 .idea/
 *.sublime-project
 *.sublime-workspace
+
+# Subfolders / Clones
+ai-la-trieu-phu-tthcm/
