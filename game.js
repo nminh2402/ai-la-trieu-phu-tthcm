@@ -389,7 +389,7 @@
     lifelinesState.audience = true;
     if (window.GameshowUI) {
       window.GameshowUI.setLifelineUsed('lifelineAudience');
-      window.GameshowUI.openAudienceModal();
+      window.GameshowUI.Sound.playLifeline();
     }
   }
 
