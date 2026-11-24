@@ -231,7 +231,19 @@
       questionCategoryEl.textContent = currentQuestionData.category;
     }
 
-    // Nội dung câu hỏi
+    // ẨN nội dung câu hỏi & đáp án, chờ người dùng click để reveal
+    const questionBox = document.querySelector('.question-box');
+    if (questionBox) {
+      questionBox.classList.add('question-hidden');
+      questionBox.classList.remove('question-revealed');
+    }
+    const answersGrid = document.querySelector('.answers-grid');
+    if (answersGrid) {
+      answersGrid.classList.add('answers-hidden');
+      answersGrid.classList.remove('answers-revealed');
+    }
+
+    // Nội dung câu hỏi (đặt sẵn vào DOM, nhưng bị ẩn bởi CSS)
     if (questionTextEl) {
       questionTextEl.textContent = currentQuestionData.question;
     }
@@ -251,6 +263,25 @@
     updateNavButtons();
     updateLifelinesAvailability(index);
     startTimer();
+  }
+
+  // Hàm reveal câu hỏi & đáp án khi người dùng click vào khung câu hỏi
+  function revealQuestion() {
+    const questionBox = document.querySelector('.question-box');
+    if (questionBox && questionBox.classList.contains('question-hidden')) {
+      questionBox.classList.remove('question-hidden');
+      questionBox.classList.add('question-revealed');
+
+      const answersGrid = document.querySelector('.answers-grid');
+      if (answersGrid) {
+        answersGrid.classList.remove('answers-hidden');
+        answersGrid.classList.add('answers-revealed');
+      }
+
+      if (window.GameshowUI) {
+        window.GameshowUI.Sound.playClick();
+      }
+    }
   }
 
   // --------------------------------------------------------------------------
@@ -549,8 +580,17 @@
         goToPrevQuestion();
       } else if (e.key === 'ArrowRight' || e.key === 'PageDown') {
         goToNextQuestion();
+      } else if (e.key === ' ' || e.key === 'Enter') {
+        // Phím Space hoặc Enter cũng reveal câu hỏi
+        revealQuestion();
       }
     });
+
+    // Click vào khung câu hỏi để reveal nội dung
+    const questionContainer = document.querySelector('.question-container');
+    if (questionContainer) {
+      questionContainer.addEventListener('click', revealQuestion);
+    }
 
     // Lắng nghe sự kiện Bắt đầu từ Start Button (qua custom event hoặc click trực tiếp)
     document.addEventListener('gameshow:start', () => {

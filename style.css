@@ -2202,3 +2202,86 @@ body {
   }
 }
 
+
+/* ==========================================================================
+   REVEAL ON CLICK: Ẩn câu hỏi & đáp án, chỉ hiện khi click vào khung câu hỏi
+   ========================================================================== */
+
+/* Trạng thái ẩn: câu hỏi chờ được reveal */
+.question-box.question-hidden .question-text {
+  color: transparent;
+  text-shadow: 0 0 24px rgba(0, 210, 255, 0.5);
+  user-select: none;
+  transition: color 0.4s ease, text-shadow 0.4s ease;
+}
+
+.question-box.question-hidden .question-header-tag {
+  opacity: 0.5;
+}
+
+/* Hiệu ứng "bấm để xem" khi câu hỏi đang ẩn */
+.question-box.question-hidden {
+  cursor: pointer;
+  position: relative;
+}
+
+.question-box.question-hidden::after {
+  content: '👆 Bấm để xem câu hỏi';
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.82rem;
+  color: rgba(0, 210, 255, 0.8);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  animation: blinkHint 1.4s infinite ease-in-out;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@keyframes blinkHint {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Ẩn toàn bộ lưới đáp án khi chưa reveal */
+.answers-grid.answers-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Trạng thái đã reveal: hiện câu hỏi & đáp án */
+.question-box.question-revealed .question-text {
+  color: inherit;
+  text-shadow: none;
+}
+
+.question-box.question-revealed::after {
+  display: none;
+}
+
+.question-box.question-revealed {
+  cursor: default;
+}
+
+.answers-grid.answers-revealed {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  animation: answersReveal 0.4s ease;
+}
+
+@keyframes answersReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
