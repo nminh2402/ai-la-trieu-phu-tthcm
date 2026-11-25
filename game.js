@@ -79,7 +79,7 @@
   // B. BIẾN TRẠNG THÁI GAME
   // --------------------------------------------------------------------------
   const TOTAL_QUESTIONS = 10;
-  const TIME_PER_QUESTION = 30; // 30 giây mỗi câu
+  const TIME_PER_QUESTION = 15; // 15 giây mỗi câu
 
   let currentQuestionIndex = 0; // 0 đến 9 tương ứng câu 1 đến 10
   let currentQuestionData = null;
@@ -101,11 +101,27 @@
   let backupQuestion = null;
 
   // --------------------------------------------------------------------------
-  // C. CÁC HÀM XỬ LÝ THỜI GIAN (ĐÃ TẮT ĐẾM NGƯỢC THEO YÊU CẦU THUYẾT TRÌNH)
+  // C. CÁC HÀM XỬ LÝ THỜI GIAN (15 GIÂY MỖI CÂU, HẾT GIỜ VẪN TỰ ẤN ĐÁP ÁN)
   // --------------------------------------------------------------------------
-  function startTimer() {
-    // Không giới hạn thời gian: Cho phép thí sinh và hội trường tự do suy nghĩ, thảo luận
+  function resetTimer() {
     stopTimer();
+    remainingSeconds = TIME_PER_QUESTION;
+    updateTimerDisplay();
+  }
+
+  function startTimer() {
+    stopTimer();
+    remainingSeconds = TIME_PER_QUESTION;
+    updateTimerDisplay();
+
+    timerInterval = setInterval(() => {
+      remainingSeconds--;
+      updateTimerDisplay();
+
+      if (remainingSeconds <= 0) {
+        handleTimeOut();
+      }
+    }, 1000);
   }
 
   function stopTimer() {
@@ -116,11 +132,28 @@
   }
 
   function updateTimerDisplay() {
-    // Đã tắt hiển thị đếm ngược
+    const displayVal = Math.max(0, remainingSeconds);
+    if (timerEl) {
+      timerEl.textContent = String(displayVal).padStart(2, '0');
+    }
+    if (timerProgressEl) {
+      const offset = 264 * (1 - displayVal / TIME_PER_QUESTION);
+      timerProgressEl.style.strokeDashoffset = offset;
+    }
+    if (timerWrapperEl) {
+      timerWrapperEl.classList.toggle('warning', displayVal <= 5);
+    }
   }
 
   function handleTimeOut() {
-    // Đã tắt tính năng hết giờ
+    stopTimer();
+    // Không khóa đáp án: Sau khi hết 15 giây vẫn cho phép tự ấn đáp án
+    if (window.GameshowUI) {
+      if (typeof window.GameshowUI.Sound.playTimeUp === 'function') {
+        window.GameshowUI.Sound.playTimeUp();
+      }
+      window.GameshowUI.showToast("⏰ HẾT 15 GIÂY! MỜI TỰ CHỌN ĐÁP ÁN.");
+    }
   }
 
   // Cập nhật trạng thái các nút điều hướng câu hỏi (Câu trước / Câu tiếp)
@@ -262,7 +295,7 @@
 
     updateNavButtons();
     updateLifelinesAvailability(index);
-    startTimer();
+    resetTimer();
   }
 
   // Hàm reveal câu hỏi & đáp án khi người dùng click vào khung câu hỏi
@@ -281,6 +314,9 @@
       if (window.GameshowUI) {
         window.GameshowUI.Sound.playClick();
       }
+
+      // Bắt đầu đếm ngược 15 giây ngay khi câu hỏi hiện lên
+      startTimer();
     }
   }
 

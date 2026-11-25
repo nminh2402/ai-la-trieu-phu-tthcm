@@ -166,6 +166,28 @@
       gain.connect(ctx.destination);
       osc.start();
       osc.stop(ctx.currentTime + 0.25);
+    },
+
+    // Tiếng Hết 15 giây suy nghĩ (2 tiếng bíp báo hiệu)
+    playTimeUp() {
+      if (isSoundMuted) return;
+      const ctx = getAudioContext();
+      if (!ctx) return;
+
+      [0, 0.22].forEach(delay => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(660, ctx.currentTime + delay);
+
+        gain.gain.setValueAtTime(0.22, ctx.currentTime + delay);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + 0.16);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + delay);
+        osc.stop(ctx.currentTime + delay + 0.16);
+      });
     }
   };
 

@@ -76,7 +76,7 @@
         </div>
 
         <div class="logo-title-group">
-          <span class="sub-badge">GAMESHOW HỌC THUẬT</span>
+          <span class="sub-badge">CỐ LÊN ANH EM</span>
           <h1 class="main-title">
             <span class="title-top">AI LÀ</span>
             <span class="title-bottom">TRIỆU PHÚ</span>
@@ -90,12 +90,7 @@
       </div>
 
       <!-- Tagline & Description -->
-      <div class="start-tagline">
-        <p class="tagline-text">
-          Chinh phục <strong>10 câu hỏi lịch sử & lý luận</strong> đỉnh cao.<br>
-          Khẳng định bản lĩnh và tri thức thế hệ trẻ Việt Nam!
-        </p>
-      </div>
+
 
       <!-- Action Button -->
       <div class="start-action-group">
@@ -124,7 +119,7 @@
   <!-- ========================================================================= -->
   <main id="introScreen" class="screen screen-intro">
     <div class="intro-content-container">
-      
+
       <!-- Tiêu đề giới thiệu -->
       <div class="intro-header">
         <span class="sub-badge">GIỚI THIỆU CUỘC THI</span>
@@ -151,7 +146,8 @@
               <div class="rule-icon-box">🎯</div>
               <div class="rule-text-box">
                 <h4 class="rule-title">10 Câu Hỏi Độc Lập</h4>
-                <p class="rule-desc">Mỗi câu hỏi là một chủ đề riêng biệt. Cả lớp sẽ cùng khám phá và hoàn thành trọn vẹn cả 10 câu.</p>
+                <p class="rule-desc">Mỗi câu hỏi là một chủ đề riêng biệt. Cả lớp sẽ cùng khám phá và hoàn thành trọn
+                  vẹn cả 10 câu.</p>
               </div>
             </li>
 
@@ -159,7 +155,8 @@
               <div class="rule-icon-box">👥</div>
               <div class="rule-text-box">
                 <h4 class="rule-title">Tối Đa 2 Người / Câu</h4>
-                <p class="rule-desc">Nếu người thứ nhất trả lời chưa đúng, cơ hội sẽ mở ra cho người thứ 2 giơ tay cứu điểm.</p>
+                <p class="rule-desc">Nếu người thứ nhất trả lời chưa đúng, cơ hội sẽ mở ra cho người thứ 2 giơ tay cứu
+                  điểm.</p>
               </div>
             </li>
 
@@ -167,7 +164,8 @@
               <div class="rule-icon-box">💡</div>
               <div class="rule-text-box">
                 <h4 class="rule-title">2 Quyền Trợ Giúp (Câu 8 & Câu 9)</h4>
-                <p class="rule-desc">Bao gồm: <strong>50:50</strong> và <strong>Hỏi ý kiến khán giả</strong> (chỉ mở khóa kích hoạt tại <strong>Câu 8</strong> và <strong>Câu 9</strong>).</p>
+                <p class="rule-desc">Bao gồm: <strong>50:50</strong> và <strong>Hỏi ý kiến khán giả</strong> (chỉ mở
+                  khóa kích hoạt tại <strong>Câu 8</strong> và <strong>Câu 9</strong>).</p>
               </div>
             </li>
 
@@ -289,8 +287,8 @@
             </button>
 
             <!-- Trợ giúp Hỏi ý kiến khán giả -->
-            <button id="lifelineAudience" class="lifeline-btn locked" title="Hỏi ý kiến khán giả: Chỉ sử dụng tại Câu 8 và Câu 9"
-              aria-label="Hỏi ý kiến khán giả">
+            <button id="lifelineAudience" class="lifeline-btn locked"
+              title="Hỏi ý kiến khán giả: Chỉ sử dụng tại Câu 8 và Câu 9" aria-label="Hỏi ý kiến khán giả">
               <span class="lifeline-disc">
                 <svg class="lifeline-svg" viewBox="0 0 24 24" fill="currentColor">
                   <path
@@ -314,7 +312,8 @@
 
           <!-- Nhóm điều khiển mốc câu hỏi & Điều hướng quay lại/tiếp theo -->
           <div class="question-nav-group">
-            <button id="prevQuestionBtn" class="nav-question-btn" title="Quay lại câu hỏi trước (Phím ◀ hoặc PageUp)" aria-label="Câu trước">
+            <button id="prevQuestionBtn" class="nav-question-btn" title="Quay lại câu hỏi trước (Phím ◀ hoặc PageUp)"
+              aria-label="Câu trước">
               <span class="nav-icon">◀</span>
               <span class="nav-text">Câu trước</span>
             </button>
@@ -324,14 +323,26 @@
               <span id="questionCounter" class="badge-value">CÂU HỎI 01/10</span>
             </div>
 
-            <button id="nextQuestionBtn" class="nav-question-btn" title="Chuyển sang câu tiếp theo (Phím ▶ hoặc PageDown)" aria-label="Câu tiếp">
+            <button id="nextQuestionBtn" class="nav-question-btn"
+              title="Chuyển sang câu tiếp theo (Phím ▶ hoặc PageDown)" aria-label="Câu tiếp">
               <span class="nav-text">Câu tiếp</span>
               <span class="nav-icon">▶</span>
             </button>
           </div>
 
-          <!-- Thẻ timer ẩn để giữ nguyên ID 'timer' phục vụ tích hợp mã nguồn mà không hiển thị -->
-          <span id="timer" style="display: none;" aria-hidden="true"></span>
+          <!-- Đồng hồ đếm ngược 15 giây (#timer) -->
+          <div class="timer-wrapper" title="Thời gian suy nghĩ: 15 giây">
+            <div class="timer-dial">
+              <svg class="timer-svg" viewBox="0 0 100 100">
+                <circle class="timer-circle-bg" cx="50" cy="50" r="42"></circle>
+                <circle id="timerProgress" class="timer-circle-bar" cx="50" cy="50" r="42"></circle>
+              </svg>
+              <div class="timer-digital-display">
+                <span id="timer">15</span>
+                <span class="timer-unit">GIÂY</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Khung sân khấu trung tâm (Studio Stage Graphic) -->
@@ -585,11 +596,13 @@
         <div class="classroom-icon-pulse">🎤</div>
         <h4 class="classroom-headline">MỜI 1 BẠN SINH VIÊN GIƠ TAY TRỢ GIÚP!</h4>
         <p class="classroom-subtext">
-          Thí sinh được quyền nhờ <strong>1 bạn sinh viên bất kỳ trong lớp</strong> đứng dậy phát biểu, đưa ra ý kiến và phân tích gợi ý đáp án trực tiếp.
+          Thí sinh được quyền nhờ <strong>1 bạn sinh viên bất kỳ trong lớp</strong> đứng dậy phát biểu, đưa ra ý kiến và
+          phân tích gợi ý đáp án trực tiếp.
         </p>
         <div class="classroom-tip-box">
           <span class="tip-icon">💡</span>
-          <span class="tip-text">MC & Thí sinh hãy chỉ định 1 bạn khán giả trong lớp và lắng nghe chia sẻ của bạn nhé!</span>
+          <span class="tip-text">MC & Thí sinh hãy chỉ định 1 bạn khán giả trong lớp và lắng nghe chia sẻ của bạn
+            nhé!</span>
         </div>
       </div>
       <div class="modal-footer classroom-modal-footer">
