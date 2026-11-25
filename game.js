@@ -79,7 +79,7 @@
   // B. BIẾN TRẠNG THÁI GAME
   // --------------------------------------------------------------------------
   const TOTAL_QUESTIONS = 10;
-  const TIME_PER_QUESTION = 15; // 15 giây mỗi câu
+  const TIME_PER_QUESTION = 10; // 10 giây mỗi câu
 
   let currentQuestionIndex = 0; // 0 đến 9 tương ứng câu 1 đến 10
   let currentQuestionData = null;
@@ -101,7 +101,7 @@
   let backupQuestion = null;
 
   // --------------------------------------------------------------------------
-  // C. CÁC HÀM XỬ LÝ THỜI GIAN (15 GIÂY MỖI CÂU, HẾT GIỜ VẪN TỰ ẤN ĐÁP ÁN)
+  // C. CÁC HÀM XỬ LÝ THỜI GIAN (10 GIÂY MỖI CÂU, HẾT GIỜ VẪN TỰ ẤN ĐÁP ÁN)
   // --------------------------------------------------------------------------
   function resetTimer() {
     stopTimer();
@@ -147,12 +147,12 @@
 
   function handleTimeOut() {
     stopTimer();
-    // Không khóa đáp án: Sau khi hết 15 giây vẫn cho phép tự ấn đáp án
+    // Không khóa đáp án: Sau khi hết 10 giây vẫn cho phép tự ấn đáp án
     if (window.GameshowUI) {
       if (typeof window.GameshowUI.Sound.playTimeUp === 'function') {
         window.GameshowUI.Sound.playTimeUp();
       }
-      window.GameshowUI.showToast("⏰ HẾT 15 GIÂY! MỜI TỰ CHỌN ĐÁP ÁN.");
+      window.GameshowUI.showToast("⏰ HẾT 10 GIÂY! MỜI TỰ CHỌN ĐÁP ÁN.");
     }
   }
 
@@ -315,7 +315,7 @@
         window.GameshowUI.Sound.playClick();
       }
 
-      // Bắt đầu đếm ngược 15 giây ngay khi câu hỏi hiện lên
+      // Bắt đầu đếm ngược 10 giây ngay khi câu hỏi hiện lên
       startTimer();
     }
   }

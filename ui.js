@@ -168,7 +168,7 @@
       osc.stop(ctx.currentTime + 0.25);
     },
 
-    // Tiếng Hết 15 giây suy nghĩ (2 tiếng bíp báo hiệu)
+    // Tiếng Hết 10 giây suy nghĩ (2 tiếng bíp báo hiệu)
     playTimeUp() {
       if (isSoundMuted) return;
       const ctx = getAudioContext();
